@@ -1,3 +1,4 @@
+// @ts-ignore
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Header } from "@/components/layouts/header";

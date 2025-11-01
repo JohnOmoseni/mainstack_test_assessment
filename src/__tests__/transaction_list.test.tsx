@@ -1,4 +1,4 @@
-// __tests__/Transactions.test.tsx
+// @ts-ignore
 import { render, screen, fireEvent } from "@testing-library/react";
 import { useGetTransactionListService } from "@/server/action/useServerActions";
 import { exportTableToCSV } from "@/lib";

@@ -1,3 +1,4 @@
+// @ts-ignore
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BalanceStats } from "@/app/home/balance_stats";
