@@ -36,7 +36,7 @@ const BalanceChart = () => {
 			<div className="flex-row-btwn gap-8 max-w-[520px]">
 				<div>
 					<p className="text-sm mb-2">Available Balance</p>
-					<h1 className="">USD {balance_data?.balance || 0}</h1>
+					<h1 className="">USD {balance_data?.balance || "0.00"}</h1>
 				</div>
 				<Button className="min-w-[118px] sm:min-w-[160px] h-[52px] py-0">
 					Withdraw
