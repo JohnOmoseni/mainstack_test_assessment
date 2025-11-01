@@ -145,7 +145,7 @@ export default function DataTable<TData, TValue>({
 							<TableRow>
 								<TableCell
 									colSpan={columns.length}
-									className="h-[220px] lg:h-[250px] text-center text-base italic font-semibold"
+									className="h-[220px] lg:h-[250px] font-medium"
 								>
 									{emptyState || "No results."}
 								</TableCell>

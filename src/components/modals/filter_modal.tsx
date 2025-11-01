@@ -15,6 +15,7 @@ import {
 import MultipleSelector from "../ui/customs/multi_select";
 import * as yup from "yup";
 import { Label } from "../ui/label";
+import { endOfMonth, format, startOfMonth, subDays } from "date-fns";
 
 const TRANSACTION_STATUS_LIST = [
 	{
@@ -44,7 +45,11 @@ const TRANSACTION_TYPE_LIST = [
 	},
 	{
 		label: "Withdrawals",
-		value: "withdrawals",
+		value: "withdrawal",
+	},
+	{
+		label: "Deposits",
+		value: "deposit",
 	},
 	{
 		label: "Chargebacks",
@@ -61,6 +66,34 @@ const TRANSACTION_TYPE_LIST = [
 ];
 
 const TIME_RANGES = ["Today", "Last 7 days", "This month", "Last 3 months"];
+
+const getDateRange = (range: string): [string, string] => {
+	const today = new Date();
+	let start: Date;
+	let end: Date = today;
+
+	switch (range) {
+		case "Today":
+			start = today;
+			end = today;
+			break;
+		case "Last 7 days":
+			start = subDays(today, 6);
+			break;
+		case "This month":
+			start = startOfMonth(today);
+			end = endOfMonth(today);
+			break;
+		case "Last 3 months":
+			start = subDays(today, 90);
+			break;
+		default:
+			start = today;
+			end = today;
+	}
+
+	return [format(start, "yyyy-MM-dd"), format(end, "yyyy-MM-dd")];
+};
 
 const FilterSchema = yup.object({
 	start_date: yup
@@ -146,10 +179,24 @@ const FilterModal = ({ trigger }: { trigger: React.ReactNode }) => {
 		});
 	}, [date_range, transaction_type, transaction_status, reset]);
 
+	const handleTimeRangeSelect = (range: string) => {
+		const [start, end] = getDateRange(range);
+		setSelectedTimeRange(range);
+
+		reset({
+			...reset,
+			// start_date: start,
+			// end_date: end,
+		});
+	};
+
 	const onApplyFilter = handleSubmit((values) => {
 		startTransition(() => {
 			setFilters({
-				date_range: selectedTimeRange || "",
+				date_range:
+					values.start_date && values.end_date
+						? `${values.start_date}_${values.end_date}`
+						: "",
 				transaction_type: values.transaction_type?.join(",") || "",
 				transaction_status: values.transaction_status?.join(",") || "",
 			});
@@ -171,7 +218,7 @@ const FilterModal = ({ trigger }: { trigger: React.ReactNode }) => {
 
 	return (
 		<Sheet open={open} onOpenChange={setOpen}>
-			<SheetTrigger>{trigger}</SheetTrigger>
+			<SheetTrigger asChild>{trigger}</SheetTrigger>
 			<SheetContent className="w-full sm:max-w-[460px] rounded-3xl overflow-hidden p-0 ">
 				<SheetHeader className="space-y-0">
 					<SheetTitle className="text-2xl font-bold">Filter</SheetTitle>
@@ -185,7 +232,7 @@ const FilterModal = ({ trigger }: { trigger: React.ReactNode }) => {
 								key={range}
 								variant={selectedTimeRange === range ? "default" : "outline"}
 								size="sm"
-								onClick={() => setSelectedTimeRange(range)}
+								onClick={() => handleTimeRangeSelect(range)}
 								className={cn(
 									"rounded-full py-5 min-w-[120px]",
 									selectedTimeRange === range ? "" : "hover:bg-muted/90"

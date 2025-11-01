@@ -2,20 +2,10 @@
 import { Header } from "@/components/layouts/header";
 import { Sidebar } from "@/components/layouts/sidebar";
 import { BalanceStats } from "./balance_stats";
-import { useMemo } from "react";
 import Transactions from "./transactions";
 import BalanceChart from "./balance_chart";
 
 export default function RevenuePage() {
-	const balanceStats = useMemo(() => {
-		return [
-			{ label: "Ledger Balance", value: "0.00", info: "" },
-			{ label: "Total Payout", value: "55,080.00", info: "" },
-			{ label: "Total Revenue", value: "175, 580.00", info: "" },
-			{ label: "Pending Payout", value: "0.00", info: "" },
-		];
-	}, []);
-
 	return (
 		<div className="max-w-[3100px] mx-auto relative translate-z-0">
 			<div className="h-svh overflow-y-auto">
@@ -33,7 +23,7 @@ export default function RevenuePage() {
 							</div>
 
 							<div className="lg:col-span-1">
-								<BalanceStats stats={balanceStats} />
+								<BalanceStats />
 							</div>
 						</div>
 

@@ -1,19 +1,25 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Link2, Briefcase, Folder, Lock } from "lucide-react";
+// import { Link2, Briefcase, Folder, Lock } from "lucide-react";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+	ProductIcon1,
+	ProductIcon2,
+	ProductIcon3,
+	ProductIcon4,
+} from "@/constants/icons";
 
 const sidebarItems = [
-	{ icon: Link2, label: "Links", active: false },
-	{ icon: Briefcase, label: "Business", active: true },
-	{ icon: Folder, label: "Files", active: false },
-	{ icon: Lock, label: "Security", active: false },
+	{ icon: ProductIcon1, label: "Links", active: false },
+	{ icon: ProductIcon2, label: "Business", active: true },
+	{ icon: ProductIcon3, label: "Files", active: false },
+	{ icon: ProductIcon4, label: "Security", active: false },
 ];
 
 export function Sidebar() {
@@ -31,7 +37,7 @@ export function Sidebar() {
 									)}
 									aria-label={item.label}
 								>
-									<item.icon className="size-5" />
+									<item.icon className="size-5 transition-all duration-300 grayscale hover:grayscale-0" />
 								</button>
 							</TooltipTrigger>
 							<TooltipContent side="right" align="center" className="text-sm">

@@ -52,7 +52,7 @@ export const TRANSACTION_COLUMNS: ColumnDef<TransactionDataResponse>[] = [
 
 			return (
 				<div className="flex flex-col items-end *:text-end gap-1">
-					<h3 className="font-medium">USD {amount}</h3>
+					<h3 className="font-bold">USD {amount}</h3>
 					<p className="text-sm">{date}</p>
 				</div>
 			);
