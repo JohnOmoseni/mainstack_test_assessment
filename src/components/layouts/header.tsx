@@ -284,7 +284,7 @@ export function Header() {
 									<Tooltip>
 										<TooltipTrigger asChild>
 											<Avatar className="h-8 w-8 bg-foreground">
-												<AvatarFallback className="bg-foreground text-background text-xs font-semibold">
+												<AvatarFallback className="bg-foreground uppercase text-background text-xs font-semibold">
 													{profile.name?.charAt(0)}
 													{profile.name?.charAt(1)}
 												</AvatarFallback>
@@ -309,7 +309,7 @@ export function Header() {
 								<div className="p-4 border-b border-gray-100">
 									<div className="flex items-center gap-3">
 										<Avatar className="size-10 bg-foreground">
-											<AvatarFallback className="text-background text-lg bg-linear-to-br from-gray-400 via-10% to-gray-900 leading-0 font-bold">
+											<AvatarFallback className="text-background uppercase text-lg bg-linear-to-br from-gray-400 via-10% to-gray-900 leading-0 font-bold">
 												{profile.name?.charAt(0)}
 												{profile.name?.charAt(1)}
 											</AvatarFallback>

@@ -230,8 +230,6 @@
 :where(*, *::before, *::after) {
 	box-sizing: border-box;
 	scroll-behavior: smooth;
-	font-family: "Degular", sans-serif;
-	font-weight: 300;
 	font-style: normal;
 }
 
