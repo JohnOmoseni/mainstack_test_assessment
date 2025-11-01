@@ -2,8 +2,8 @@ import { formatAmount } from "@/lib";
 import { getStatusBadgeColor } from "@/lib/styles";
 import { cn } from "@/lib/utils";
 import { ArrowDownLeft, ArrowUpRight } from "lucide-react";
-import type { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
+import type { ColumnDef } from "@tanstack/react-table";
 
 export const TRANSACTION_COLUMNS: ColumnDef<TransactionDataResponse>[] = [
 	{
