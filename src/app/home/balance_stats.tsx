@@ -70,7 +70,7 @@ export function BalanceStats() {
 				<div key={stat.label} className="flex items-start justify-between">
 					<div className="space-y-0.5">
 						<p className="text-sm text-gray-500 font-medium">{stat.label}</p>
-						<h2 className="md:text-3xl">USD {stat.value}</h2>
+						<h2 className="md:text-[26px] md:leading-7">USD {stat.value}</h2>
 					</div>
 					<TooltipProvider>
 						<Tooltip>
