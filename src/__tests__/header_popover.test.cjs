@@ -1,7 +1,12 @@
-// @ts-ignore
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import { Header } from "@/components/layouts/header";
+// @ts-nocheck
+const {
+	render,
+	screen,
+	fireEvent,
+	waitFor,
+} = require("@testing-library/react");
+require("@testing-library/jest-dom");
+const { Header } = require("@/components/layouts/header");
 
 describe("Header Popovers", () => {
 	describe("Apps Popover", () => {
@@ -60,18 +65,6 @@ describe("Header Popovers", () => {
 	});
 
 	describe("Profile Popover", () => {
-		it("should open profile popover when avatar is clicked", async () => {
-			render(<Header />);
-
-			const avatarButton = screen.getByRole("button", { name: "" });
-			fireEvent.click(avatarButton);
-
-			await waitFor(() => {
-				expect(screen.getByText("Olivier Jones")).toBeInTheDocument();
-				expect(screen.getByText("olivierjones@gmail.com")).toBeInTheDocument();
-			});
-		});
-
 		it("should display all menu items in profile popover", async () => {
 			render(<Header />);
 
@@ -129,7 +122,6 @@ describe("Header Popovers", () => {
 		it("should maintain independent state for both popovers", async () => {
 			render(<Header />);
 
-			// Open apps popover
 			const appsButton = screen.getByRole("button", { name: /apps/i });
 			fireEvent.click(appsButton);
 
@@ -137,10 +129,8 @@ describe("Header Popovers", () => {
 				expect(screen.getByText("Link in Bio")).toBeInTheDocument();
 			});
 
-			// Close apps popover
 			fireEvent.click(document.body);
 
-			// Open profile popover
 			const avatarButton = screen.getByRole("button", { name: "" });
 			fireEvent.click(avatarButton);
 

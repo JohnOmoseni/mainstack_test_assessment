@@ -1,7 +1,7 @@
-// @ts-ignore
-import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import { Sidebar } from "@/components/layouts/sidebar";
+// @ts-nocheck
+const { render, screen, fireEvent } = require("@testing-library/react");
+require("@testing-library/jest-dom");
+const { Sidebar } = require("@/components/layouts/sidebar");
 
 describe("Sidebar Component", () => {
 	it("renders all sidebar buttons", () => {
@@ -39,7 +39,7 @@ describe("Sidebar Component", () => {
 		expect(aside).toHaveClass("fixed", "rounded-full");
 
 		const buttons = screen.getAllByRole("button");
-		buttons.forEach((btn: any) => {
+		buttons.forEach((btn) => {
 			expect(btn).toHaveClass("rounded-full");
 			expect(btn).toHaveClass("transition-colors");
 		});

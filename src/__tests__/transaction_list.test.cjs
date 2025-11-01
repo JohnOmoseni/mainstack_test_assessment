@@ -1,14 +1,20 @@
 // @ts-ignore
-import { render, screen, fireEvent } from "@testing-library/react";
-import { useGetTransactionListService } from "@/server/action/useServerActions";
-import { exportTableToCSV } from "@/lib";
-import Transactions from "@/app/home/transactions";
+const { render, screen, fireEvent } = require("@testing-library/react");
+require("@testing-library/jest-dom");
 
+const {
+	useGetTransactionListService,
+} = require("@/server/action/useServerActions");
+const { exportTableToCSV } = require("@/lib");
+const Transactions = require("@/app/home/transactions").default;
+
+// 🧱 Mock modules
 jest.mock("@/server/action/useServerActions");
 jest.mock("@/lib", () => ({
 	exportTableToCSV: jest.fn(),
 	getExportableColumns: jest.fn(() => []),
 }));
+
 jest.mock("nuqs", () => ({
 	parseAsString: jest.fn(),
 	useQueryStates: jest.fn(() => [
@@ -23,9 +29,7 @@ jest.mock("nuqs", () => ({
 
 jest.mock("@/components/modals/filter_modal", () => ({
 	__esModule: true,
-	default: ({ trigger }: any) => (
-		<div data-testid="filter-modal">{trigger}</div>
-	),
+	default: ({ trigger }) => <div data-testid="filter-modal">{trigger}</div>,
 }));
 
 describe("Transactions Component", () => {
@@ -34,7 +38,7 @@ describe("Transactions Component", () => {
 	});
 
 	it("renders empty state when no transactions", () => {
-		(useGetTransactionListService as jest.Mock).mockReturnValue({
+		useGetTransactionListService.mockReturnValue({
 			data: [],
 			isLoading: false,
 		});
@@ -50,7 +54,7 @@ describe("Transactions Component", () => {
 	});
 
 	it("renders list of transactions when data exists", () => {
-		(useGetTransactionListService as jest.Mock).mockReturnValue({
+		useGetTransactionListService.mockReturnValue({
 			data: [
 				{
 					id: 1,
@@ -77,7 +81,7 @@ describe("Transactions Component", () => {
 	});
 
 	it("displays loading state when fetching transactions", () => {
-		(useGetTransactionListService as jest.Mock).mockReturnValue({
+		useGetTransactionListService.mockReturnValue({
 			data: [],
 			isLoading: true,
 		});
@@ -87,7 +91,7 @@ describe("Transactions Component", () => {
 	});
 
 	it("calls exportTableToCSV when Export button clicked", () => {
-		(useGetTransactionListService as jest.Mock).mockReturnValue({
+		useGetTransactionListService.mockReturnValue({
 			data: [
 				{
 					id: 1,
