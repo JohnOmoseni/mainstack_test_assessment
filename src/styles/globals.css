@@ -227,7 +227,7 @@
 	@apply truncate max-w-[40ch];
 }
 
-::where(*, *::before, *::after) {
+:where(*, *::before, *::after) {
 	box-sizing: border-box;
 	scroll-behavior: smooth;
 	font-family: "Degular", sans-serif;

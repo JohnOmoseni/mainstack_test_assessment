@@ -180,7 +180,7 @@ const FilterModal = ({ trigger }: { trigger: React.ReactNode }) => {
 	}, [date_range, transaction_type, transaction_status, reset]);
 
 	const handleTimeRangeSelect = (range: string) => {
-		const [start, end] = getDateRange(range);
+		const [] = getDateRange(range);
 		setSelectedTimeRange(range);
 
 		reset({
