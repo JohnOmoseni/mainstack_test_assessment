@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-// import { Link2, Briefcase, Folder, Lock } from "lucide-react";
 import {
 	Tooltip,
 	TooltipContent,

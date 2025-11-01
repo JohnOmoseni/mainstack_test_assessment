@@ -33,7 +33,24 @@ export const TRANSACTION_COLUMNS: ColumnDef<TransactionDataResponse>[] = [
 						<p className="font-medium text-lg">
 							{metadata?.product_name || "No Name"}
 						</p>
-						<p className="text-sm">{metadata?.name || "unknown"}</p>
+
+						{transaction?.type === "deposit" ||
+						transaction?.type === "withdrawal" ? (
+							<p
+								className={cn(
+									"text-sm capitalize",
+									transaction?.status === "successful"
+										? "text-green-600"
+										: transaction?.status === "failed"
+										? "text-red-600"
+										: transaction?.status === "pending" && "text-yellow-600"
+								)}
+							>
+								{transaction?.status || "unknown"}
+							</p>
+						) : (
+							<p className="text-sm">{metadata?.name || "unknown"}</p>
+						)}
 					</div>
 				</div>
 			);
