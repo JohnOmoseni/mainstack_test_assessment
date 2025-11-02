@@ -127,7 +127,7 @@ export function Header() {
 
 	return (
 		<header className="sticky top-3 z-50 w-[95%] mx-auto my-3.5 border-b border-border bg-background rounded-full shadow-[0_0_4px_rgba(0,0,0,0.08)] transition-all">
-			<div className="flex h-16 items-center justify-between px-6">
+			<div className="flex h-16 items-center justify-between px-3 sm:pl-4 md:px-6">
 				<div className="flex items-center gap-2">
 					<img src={images.logo} alt="logo" className="size-9" />
 				</div>

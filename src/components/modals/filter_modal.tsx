@@ -219,13 +219,12 @@ const FilterModal = ({ trigger }: { trigger: React.ReactNode }) => {
 	return (
 		<Sheet open={open} onOpenChange={setOpen}>
 			<SheetTrigger asChild>{trigger}</SheetTrigger>
-			<SheetContent className="w-full sm:max-w-[460px] rounded-3xl overflow-hidden p-0 ">
+			<SheetContent className="w-full max-w-[320px] min-[420px]:max-w-[400px] sm:max-w-[460px] rounded-3xl overflow-hidden p-0 ">
 				<SheetHeader className="space-y-0">
 					<SheetTitle className="text-2xl font-bold">Filter</SheetTitle>
 				</SheetHeader>
 
 				<div className="h-full flex flex-col mt-2 mb-4 px-4">
-					{/* Time Range Quick Filters */}
 					<div className="flex overflow-x-auto remove-scrollbar gap-2 px-1.5">
 						{TIME_RANGES.map((range) => (
 							<Button
