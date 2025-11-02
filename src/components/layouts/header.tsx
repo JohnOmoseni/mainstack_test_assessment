@@ -120,7 +120,9 @@ export function Header() {
 			...user_profile,
 			first_name: user_profile?.first_name || "Unknown",
 			last_name: user_profile?.last_name || "",
-			name: `${user_profile?.first_name} ${user_profile?.last_name}`,
+			name: user_profile?.first_name
+				? `${user_profile?.first_name} ${user_profile?.last_name || ""}`
+				: "No Name",
 			email: user_profile?.email || "unknown",
 		};
 	}, [user_profile]);
